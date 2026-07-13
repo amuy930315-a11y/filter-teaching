@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎨 濾鏡教學 · 專業版</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Serif TC', sans-serif;
+            background-color: #f8f6f3;
+            color: #1e1e1e;
+            padding: 0 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px 30px;
+            margin-bottom: 40px;
+        }
+
+        .hero .icon {
+            font-size: 52px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1e1e1e;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: #b8865b;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #7a7a7a;
+            margin-top: 12px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1e1e1e;
+            text-align: center;
+            letter-spacing: -0.3px;
+        }
+
+        .section-title span {
+            color: #b8865b;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #8a8a8a;
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 28px;
+        }
+
+        .app-reminder {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .app-reminder .badge {
+            display: inline-block;
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .app-reminder .badge span {
+            color: #b8865b;
+        }
+
+        .app-reminder .hint {
+            display: block;
+            margin-top: 6px;
+            font-size: 13px;
+            color: #b0b0b0;
+            font-weight: 400;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .article-card {
+            display: block;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px 16px 20px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .grid-6 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .grid-6 .pic {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #ece4da;
+        }
+
+        .grid-6 .pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .grid-6 .pic img:hover {
+            transform: scale(1.05);
+        }
+
+        .article-card .tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: #b8865b;
+            background: rgba(184, 134, 91, 0.08);
+            padding: 3px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .article-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e1e1e;
+            margin-bottom: 4px;
+        }
+
+        .article-card p {
+            font-size: 14px;
+            color: #7a7a7a;
+            line-height: 1.6;
+        }
+
+        .article-card .click-hint {
+            display: inline-block;
+            margin-top: 10px;
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .article-card:hover .click-hint {
+            background: #b8865b;
+        }
+
+        .btn-rect {
+            display: inline-block;
+            background: #1e1e1e;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 48px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s;
+            letter-spacing: 0.3px;
+            text-align: center;
+        }
+
+        .btn-rect:hover {
+            background: #3a3a3a;
+            transform: translateY(-2px);
+        }
+
+        .btn-center {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .about-text {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .about-text .avatar {
+            font-size: 44px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .about-text p {
+            color: #6b6b6b;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 10px;
+            padding: 28px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            color: #b0b0b0;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #b8865b;
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 30px;
+            }
+            .article-grid {
+                max-width: 100%;
+            }
+            .hero {
+                padding: 30px 10px 20px;
+            }
+            .btn-rect {
+                padding: 12px 32px;
+                font-size: 14px;
+            }
+            .app-reminder .badge {
+                font-size: 13px;
+                padding: 6px 18px;
+            }
+            .grid-6 {
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <section class="hero" id="home">
+            <span class="icon">🍂</span>
+            <h1>從 <span>Lightroom</span> 開始<br />學會調出屬於自己的色調</h1>
+            <p>分享我的調色技巧與濾鏡數據，讓每一張照片都有專屬的記憶色調。</p>
+        </section>
+
+        <section class="section" id="filters">
+            <h2 class="section-title"><span>濾鏡教學</span></h2>
+
+            <div class="app-reminder">
+                <span class="badge">📱 APP：<span>Lightroom</span></span>
+                <span class="hint">💡 請先下載 Adobe Lightroom，才能套用調色數據喔</span>
+            </div>
+
+            <p class="section-sub">點擊下方卡片，查看完整的調色數據與步驟</p>
+            <div class="article-grid">
+                <a href="autumn.html" class="article-card">
+                    <div class="grid-6">
+                        <div class="pic"><img src="https://cdn.phototourl.com/member/2026-07-13-b15fb2e5-ef31-43f9-acf5-c9ddcdc42f4d.png" alt="秋天1" /></div>
+                        <div class="pic"><img src="https://cdn.phototourl.com/member/2026-07-13-f0b83c87-9070-48a7-9724-1f77f334742d.png" alt="秋天2" /></div>
+                        <div class="pic"><img src="https://cdn.phototourl.com/member/2026-07-13-4997c9e4-7938-454f-9890-7a8cb70b2219.png" alt="秋天3" /></div>
+                        <div class="pic"><img src="https://cdn.phototourl.com/member/2026-07-13-18ea55ad-04d6-4a3a-8aa8-355ac77d8fea.png" alt="秋天4" /></div>
+                        <div class="pic"><img src="https://cdn.phototourl.com/member/2026-07-13-46be2f06-0a2b-4b1e-873a-6cd8307de9ac.png" alt="秋天5" /></div>
+                        <div class="pic"><img src="https://cdn.phototourl.com/member/2026-07-13-96083946-1f4d-4407-b7be-40ca72d03aaa.png" alt="秋天6" /></div>
+                    </div>
+                    <span class="tag">調色教學</span>
+                    <h4>質感秋天</h4>
+                    <p>暖橘色調，讓照片充滿秋天的氛圍與溫度。適合楓葉、銀杏、日常街景。</p>
+                    <span class="click-hint">📖 點擊查看完整教學 →</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="btn-center" id="basics">
+            <a href="preset-teaching.html" class="btn-rect">📖 建立預設集教學 →</a>
+        </div>
+
+        <div class="about-text">
+            <span class="avatar">📷</span>
+            <p>
+                喜歡用照片記錄生活，也喜歡研究各種色調。<br />
+                這裡分享我從 Lightroom 學到的調色技巧，<br />
+                希望幫助更多人找到自己喜歡的色調風格。
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>用色調記錄生活，讓每張照片都有故事。</p>
+            <p style="margin-top:4px;">
+                聯繫我：<a href="mailto:amuy930315@email.com">amuy930315@email.com</a>
+            </p>
+            <p style="margin-top:2px; font-size:12px; color:#d0d0d0;">
+                © 2026 濾鏡教學
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
