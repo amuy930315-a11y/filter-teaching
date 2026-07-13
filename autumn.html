@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🍂 質感秋天 · 濾鏡教學</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Serif TC', sans-serif;
+            background-color: #f8f6f3;
+            color: #1e1e1e;
+            padding: 0 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 0 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b8865b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #8a6b4a;
+        }
+
+        .back-link .arrow {
+            display: inline-block;
+            margin-right: 6px;
+            transition: transform 0.3s;
+        }
+
+        .back-link:hover .arrow {
+            transform: translateX(-4px);
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1e1e1e;
+        }
+
+        .page-title span {
+            color: #b8865b;
+        }
+
+        .page-sub {
+            color: #8a8a8a;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .photo-grid img:hover {
+            transform: scale(1.02);
+        }
+
+        .compare-section {
+            margin-bottom: 30px;
+        }
+
+        .compare-section .compare-title {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 14px;
+            color: #1e1e1e;
+        }
+
+        .compare-section .compare-title span {
+            color: #b8865b;
+        }
+
+        .compare-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .compare-box {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #e8e4df;
+            flex: 1 1 45%;
+            min-width: 250px;
+            max-width: 48%;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .compare-box:hover {
+            transform: scale(1.01);
+        }
+
+        .compare-box img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .compare-box .label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+            pointer-events: none;
+        }
+
+        .compare-box .label.after {
+            background: rgba(184, 134, 91, 0.85);
+        }
+
+        .data-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px 28px 28px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            margin-bottom: 30px;
+        }
+
+        .data-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #1e1e1e;
+        }
+
+        .data-card h3 span {
+            color: #b8865b;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 30px;
+        }
+
+        .data-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            color: #6b6b6b;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .data-item .value {
+            font-weight: 600;
+            color: #1e1e1e;
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(0, 0, 0, 0.08);
+            vertical-align: middle;
+            margin-right: 4px;
+            flex-shrink: 0;
+        }
+
+        .color-dot.yellow {
+            background: #f5d742;
+        }
+
+        .color-dot.green {
+            background: #6ba36b;
+        }
+
+        .data-item .label-with-dot {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-divider {
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            margin: 16px 0 14px;
+            padding-top: 4px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #b8865b;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .steps {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px 28px 28px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            margin-bottom: 30px;
+        }
+
+        .steps h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #1e1e1e;
+        }
+
+        .steps h3 span {
+            color: #b8865b;
+        }
+
+        .steps ol {
+            padding-left: 22px;
+            color: #6b6b6b;
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .steps ol li::marker {
+            color: #b8865b;
+            font-weight: 600;
+        }
+
+        .btn-rect {
+            display: inline-block;
+            background: #1e1e1e;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 48px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s;
+            letter-spacing: 0.3px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-rect:hover {
+            background: #3a3a3a;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 10px;
+            padding: 28px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            color: #b0b0b0;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #b8865b;
+            text-decoration: none;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 30px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            animation: zoomIn 0.25s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .photo-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .data-grid {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+            .page-title {
+                font-size: 28px;
+            }
+            .container {
+                padding: 20px 0;
+            }
+            .btn-rect {
+                padding: 12px 32px;
+                font-size: 14px;
+            }
+            .compare-box {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            .compare-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .compare-box img {
+                aspect-ratio: 4 / 3;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">
+            <span class="arrow">←</span> 回到首頁
+        </a>
+
+        <h1 class="page-title">🍂 質感<span>秋天</span></h1>
+        <p class="page-sub">暖橘色調，讓照片充滿秋天的氛圍與溫度。</p>
+
+        <div class="photo-grid">
+            <img src="https://cdn.phototourl.com/member/2026-07-13-b15fb2e5-ef31-43f9-acf5-c9ddcdc42f4d.png" alt="秋天1" onclick="openLightbox(this)" />
+            <img src="https://cdn.phototourl.com/member/2026-07-13-f0b83c87-9070-48a7-9724-1f77f334742d.png" alt="秋天2" onclick="openLightbox(this)" />
+            <img src="https://cdn.phototourl.com/member/2026-07-13-4997c9e4-7938-454f-9890-7a8cb70b2219.png" alt="秋天3" onclick="openLightbox(this)" />
+            <img src="https://cdn.phototourl.com/member/2026-07-13-18ea55ad-04d6-4a3a-8aa8-355ac77d8fea.png" alt="秋天4" onclick="openLightbox(this)" />
+            <img src="https://cdn.phototourl.com/member/2026-07-13-46be2f06-0a2b-4b1e-873a-6cd8307de9ac.png" alt="秋天5" onclick="openLightbox(this)" />
+            <img src="https://cdn.phototourl.com/member/2026-07-13-96083946-1f4d-4407-b7be-40ca72d03aaa.png" alt="秋天6" onclick="openLightbox(this)" />
+        </div>
+
+        <div class="compare-section">
+            <div class="compare-title">🔄 Before <span>vs</span> After</div>
+            <div class="compare-row">
+                <div class="compare-box" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="https://picsum.photos/seed/before_autumn/800/600" alt="Before" />
+                    <span class="label">⬅️ Before</span>
+                </div>
+                <div class="compare-box" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="https://picsum.photos/seed/after_autumn/800/600" alt="After" />
+                    <span class="label after">➡️ After</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-card">
+            <h3>📋 Lightroom <span>調色數據</span></h3>
+            <div class="data-grid">
+
+                <div class="data-item"><span>曝光度</span><span class="value">+0.80</span></div>
+                <div class="data-item"><span>對比</span><span class="value">-25</span></div>
+                <div class="data-item"><span>陰影</span><span class="value">-25</span></div>
+
+                <div class="data-item"><span>色溫</span><span class="value">+20</span></div>
+                <div class="data-item"><span>自然飽和度</span><span class="value">-30</span></div>
+                <div class="data-item"><span>飽和度</span><span class="value">+25</span></div>
+
+                <div class="section-divider" style="grid-column: 1 / -1;"></div>
+                <span class="section-label" style="grid-column: 1 / -1;">🎨 顏色混合</span>
+
+                <div class="data-item" style="grid-column: 1 / -1;">
+                    <span class="label-with-dot">
+                        <span class="color-dot yellow"></span> 黃色
+                    </span>
+                    <span class="value">色相 -75 · 飽和度 +15</span>
+                </div>
+
+                <div class="data-item" style="grid-column: 1 / -1;">
+                    <span class="label-with-dot">
+                        <span class="color-dot green"></span> 綠色
+                    </span>
+                    <span class="value">色相 -70</span>
+                </div>
+
+                <div class="section-divider" style="grid-column: 1 / -1;"></div>
+                <span class="section-label" style="grid-column: 1 / -1;">✨ 效果</span>
+
+                <div class="data-item"><span>紋理</span><span class="value">+30</span></div>
+                <div class="data-item"><span>清晰度</span><span class="value">+30</span></div>
+
+            </div>
+        </div>
+
+        <div class="steps">
+            <h3>📖 調色 <span>步驟</span></h3>
+            <ol>
+                <li>將照片匯入 Lightroom</li>
+                <li>曝光度 +0.80，對比 -25，陰影 -25</li>
+                <li>色溫 +20，自然飽和度 -30，飽和度 +25</li>
+                <li>顏色混合：🟡 黃色 色相 -75 · 飽和度 +15</li>
+                <li>顏色混合：🟢 綠色 色相 -70</li>
+                <li>紋理 +30，清晰度 +30</li>
+                <li>完成！儲存為預設集</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 10px;">
+            <a href="preset-teaching.html" class="btn-rect">📖 建立預設集教學 →</a>
+        </div>
+
+        <div class="footer">
+            <p>用色調記錄生活，讓每張照片都有故事。</p>
+            <p style="margin-top:4px;">
+                聯繫我：<a href="mailto:amuy930315@email.com">amuy930315@email.com</a>
+            </p>
+            <p style="margin-top:2px; font-size:12px; color:#d0d0d0;">
+                © 2026 濾鏡教學
+            </p>
+        </div>
+
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="放大檢視" />
+    </div>
+
+    <script>
+        function openLightbox(imgElement) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            if (imgElement && imgElement.src) {
+                lightboxImg.src = imgElement.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
