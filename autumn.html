@@ -384,25 +384,71 @@
             font-weight: 600;
         }
 
-        .btn-rect {
+        /* ===== 按鈕群組 ===== */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        /* ===== 圓角玻璃按鈕 ===== */
+        .btn-glass {
             display: inline-block;
-            background: #1e1e1e;
-            border: none;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 60px;
             padding: 14px 48px;
-            color: #ffffff;
+            color: #1e1e1e;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 16px;
             transition: all 0.3s;
             letter-spacing: 0.3px;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             cursor: pointer;
+            width: 100%;
+            max-width: 380px;
         }
 
-        .btn-rect:hover {
-            background: #3a3a3a;
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.8);
             transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== 下載按鈕（暖棕色） ===== */
+        .btn-download {
+            display: inline-block;
+            background: #b8865b;
+            border: none;
+            border-radius: 60px;
+            padding: 16px 48px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(184, 134, 91, 0.25);
+            cursor: pointer;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .btn-download:hover {
+            background: #a0724a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(184, 134, 91, 0.35);
+        }
+
+        .btn-download .icon {
+            margin-right: 8px;
         }
 
         .footer {
@@ -473,9 +519,15 @@
             .container {
                 padding: 20px 0;
             }
-            .btn-rect {
-                padding: 12px 32px;
-                font-size: 14px;
+            .btn-glass {
+                padding: 12px 28px;
+                font-size: 15px;
+                max-width: 100%;
+            }
+            .btn-download {
+                padding: 14px 28px;
+                font-size: 16px;
+                max-width: 100%;
             }
             .slider-wrapper {
                 aspect-ratio: 16 / 9;
@@ -586,8 +638,17 @@
             </ol>
         </div>
 
-        <div style="text-align: center; margin-top: 10px;">
-            <a href="preset-teaching.html" class="btn-rect">📖 建立預設集教學 →</a>
+        <!-- ===== 按鈕群組 ===== -->
+        <div class="btn-group">
+            <!-- 下載 DNG 按鈕（上方） -->
+            <a href="https://drive.google.com/file/d/1vJ4r6CJhQx46GUE_09jzVn92fWEJ7qh3/view?usp=sharing" target="_blank" class="btn-download">
+                <span class="icon">📥</span> 直接下載 DNG 檔案
+            </a>
+
+            <!-- 建立預設集教學（圓角玻璃） -->
+            <a href="preset-teaching.html" class="btn-glass">
+                📖 建立預設集教學 →
+            </a>
         </div>
 
         <div class="footer">
